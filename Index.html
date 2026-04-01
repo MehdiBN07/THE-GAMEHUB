@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="mainHtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">THE GAMEHUB | المحرك الذكي</title>
+    <style>
+        /* كود التنسيق والألوان */
+        body { margin: 0; padding: 0; background-color: #080; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        .search-card { background: #0d1117; padding: 25px; border-radius: 25px; border: 2px solid #00ffcc; width: 90%; max-width: 450px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,255,204,0.2); }
+        .lang-switcher { position: absolute; top: 15px; left: 15px; display: flex; gap: 5px; }
+        .lang-btn { background: #1a1f26; color: #00ffcc; border: 1px solid #30363d; padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
+        .lang-btn.active { background: #00ffcc; color: #000; border-color: #00ffcc; }
+        h1 { color: #00ffcc; font-size: 2.2rem; margin-bottom: 20px; text-shadow: 0 0 10px #00ffcc; letter-spacing: 1px; font-weight: 900; }
+        .section-title { font-size: 0.9rem; color: #00ffcc; margin: 15px 0 10px; display: block; font-weight: bold; text-align: right; border-right: 3px solid #00ffcc; padding-right: 10px; }
+        .site-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .site-btn { background: #1a1f26; color: #8b949e; border: 1px solid #30363d; padding: 12px 5px; border-radius: 12px; cursor: pointer; font-size: 0.85rem; transition: 0.3s; }
+        .site-btn.active { background: #00ffcc; color: #000; border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); font-weight: bold; }
+        .input-box { width: 100%; padding: 18px; border-radius: 15px; border: 2px solid #30363d; background: #000; color: #fff; font-size: 1rem; margin-bottom: 20px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        .input-box:focus { border-color: #00ffcc; }
+        .search-btn { background: #00ffcc; color: #000; border: none; padding: 18px; width: 100%; border-radius: 15px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
+        .search-btn:hover { background: #00ccaa; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <div class="search-card">
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('ar')">العربية</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+        </div>
+
+        <h1 id="mainLogo">THE GAMEHUB</h1>
+        
+        <span class="section-title" id="titleMobile">ألعاب وتطبيقات الهاتف (Android)</span>
+        <div class="site-grid">
+            <button class="site-btn" onclick="selectSite('apkmirror', this)">APK Mirror</button>
+            <button class="site-btn" onclick="selectSite('rexdl', this)">Rexdl</button>
+            <button class="site-btn" onclick="selectSite('uptodown', this)">Uptodown</button>
+        </div>
+
+        <span class="section-title" id="titlePC">ألعاب الكمبيوتر (نسخ مكركة)</span>
+        <div class="site-grid">
+            <button class="site-btn active" onclick="selectSite('elamigos', this)">ElAmigos</button>
+            <button class="site-btn" onclick="selectSite('fitgirl', this)">FitGirl</button>
+            <button class="site-btn" onclick="selectSite('dodi', this)">DODI</button>
+        </div>
+
+        <span class="section-title" id="titleOriginal">ألعاب الكمبيوتر (أصلية)</span>
+        <div class="site-grid">
+            <button class="site-btn" onclick="selectSite('steam', this)">Steam</button>
+            <button class="site-btn" onclick="selectSite('epic', this)">Epic Games</button>
+        </div>
+
+        <input type="text" id="gameQuery" class="input-box" placeholder="... اكتب اسم اللعبة" autocomplete="off">
+        <button class="search-btn" id="searchBtn" onclick="executeSearch()">بحث سريع 🚀</button>
+    </div>
+
+    <script>
+        // حماية المحتوى
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
+
+        let selectedSite = 'elamigos';
+        const translations = {
+            ar: { title: "THE GAMEHUB | المحرك الذكي", mobile: "ألعاب وتطبيقات الهاتف", pc: "ألعاب الكمبيوتر (مكركة)", original: "أصلية", placeholder: "... اكتب اسم اللعبة", btn: "بحث سريع 🚀" },
+            en: { title: "THE GAMEHUB | Smart Engine", mobile: "Mobile Games & Apps", pc: "PC Games (Cracked)", original: "Original", placeholder: "Type game name...", btn: "Fast Search 🚀" },
+            fr: { title: "THE GAMEHUB | Moteur Intelligent", mobile: "Jeux & Apps Mobiles", pc: "Jeux PC (Crackés)", original: "Original", placeholder: "Nom du jeu...", btn: "Recherche 🚀" }
+        };
+
+        function setLanguage(lang) {
+            const data = translations[lang];
+            document.getElementById('mainHtml').dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('pageTitle').innerText = data.title;
+            document.getElementById('mainLogo').innerText = "THE GAMEHUB";
+            document.getElementById('titleMobile').innerText = data.mobile;
+            document.getElementById('titlePC').innerText = data.pc;
+            document.getElementById('titleOriginal').innerText = data.original;
+            document.getElementById('gameQuery').placeholder = data.placeholder;
+            document.getElementById('searchBtn').innerText = data.btn;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function selectSite(site, btn) {
+            selectedSite = site;
+            document.querySelectorAll('.site-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function executeSearch() {
+            const query = document.getElementById('gameQuery').value;
+            if (!query) return alert("الرجاء كتابة اسم اللعبة!");
+            
+            let url = "";
+            switch(selectedSite) {
+                case 'elamigos': url = `https://www.google.com/search?q=site:elamigos.site+${query}`; break;
+                case 'fitgirl': url = `https://fitgirl-repacks.site/?s=${query}`; break;
+                case 'dodi': url = `https://dodi-repacks.site/?s=${query}`; break;
+                case 'apkmirror': url = `https://www.apkmirror.com/?post_type=app_release&searchtype=apk&s=${query}`; break;
+                case 'rexdl': url = `https://rexdl.com/?s=${query}`; break;
+                case 'uptodown': url = `https://en.uptodown.com/android/search/${query}`; break;
+                case 'steam': url = `https://store.steampowered.com/search/?term=${query}`; break;
+                case 'epic': url = `https://www.epicgames.com/store/ar/browse?q=${query}`; break;
+            }
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
