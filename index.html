@@ -63,6 +63,7 @@
             <span class="section-title" id="txtMini">ألعاب مصغرة (Mini Games)</span>
             <div class="site-grid">
                 <a href="https://mehdibn07.github.io/Mouse-Hunter/" target="_blank" class="site-btn highlight" id="gameMouseHunter">صائد الفئران</a>
+                <a href="https://mehdibn07.github.io/Ludo/" target="_blank" class="site-btn highlight" id="gameLudo">لودو</a>
             </div>
             <input type="text" id="gameQuery" class="input-box" placeholder="... اكتب اسم اللعبة" autocomplete="off">
             <div id="errorMsg">الرجاء كتابة اسم اللعبة!</div>
@@ -74,9 +75,9 @@
         let currentLang = 'ar';
         let selectedSite = 'wifi4games';
         const dictionary = {
-            ar: { mobile: "ألعاب الهاتف (Android)", pc: "ألعاب مكركة (PC)", original: "ألعاب أصلية (Official)", mini: "ألعاب مصغرة (Mini Games)", mouseHunter: "صائد الفئران", placeholder: "... اكتب اسم اللعبة", btn: "بحث سريع 🚀", error: "الرجاء كتابة اسم اللعبة!" },
-            en: { mobile: "Mobile Games (Android)", pc: "Cracked PC Games", original: "Official Stores", mini: "Mini Games", mouseHunter: "Mouse Hunter", placeholder: "Type game name...", btn: "Quick Search 🚀", error: "Please type a game name!" },
-            fr: { mobile: "Jeux Mobile (Android)", pc: "Jeux PC Crackés", original: "Stores Officiels", mini: "Mini Jeux", mouseHunter: "Chasseur de Souris", placeholder: "Nom du jeu...", btn: "Recherche 🚀", error: "Veuillez taper le nom du jeu!" }
+            ar: { mobile: "ألعاب الهاتف (Android)", pc: "ألعاب مكركة (PC)", original: "ألعاب أصلية (Official)", mini: "ألعاب مصغرة (Mini Games)", mouseHunter: "صائد الفئران", ludo: "لودو", placeholder: "... اكتب اسم اللعبة", btn: "بحث سريع 🚀", error: "الرجاء كتابة اسم اللعبة!" },
+            en: { mobile: "Mobile Games (Android)", pc: "Cracked PC Games", original: "Official Stores", mini: "Mini Games", mouseHunter: "Mouse Hunter", ludo: "LUDO", placeholder: "Type game name...", btn: "Quick Search 🚀", error: "Please type a game name!" },
+            fr: { mobile: "Jeux Mobile (Android)", pc: "Jeux PC Crackés", original: "Stores Officiels", mini: "Mini Jeux", mouseHunter: "Chasseur de Souris", ludo: "LUDO", placeholder: "Nom du jeu...", btn: "Recherche 🚀", error: "Veuillez taper le nom du jeu!" }
         };
         function setLanguage(lang, btn) {
             currentLang = lang;
@@ -90,6 +91,7 @@
             document.getElementById('txtOriginal').innerText = data.original;
             document.getElementById('txtMini').innerText = data.mini;
             document.getElementById('gameMouseHunter').innerText = data.mouseHunter;
+            document.getElementById('gameLudo').innerText = data.ludo;
             document.getElementById('gameQuery').placeholder = data.placeholder;
             document.getElementById('txtBtn').innerText = data.btn;
             document.getElementById('errorMsg').innerText = data.error;
