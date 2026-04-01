@@ -8,26 +8,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --neon: #00ffcc; --dark-bg: #050505; --card-bg: #0d0d0d; }
-        body { margin: 0; padding: 0; background-color: var(--dark-bg); background-image: radial-gradient(circle at center, #111 0%, #050505 100%); color: white; font-family: 'Tajawal', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
-        .glow-box { position: relative; width: 90%; max-width: 420px; padding: 2px; border-radius: 25px; background: linear-gradient(45deg, transparent, var(--neon), transparent); }
-        .search-card { background: var(--card-bg); padding: 30px 25px; border-radius: 23px; text-align: center; position: relative; }
-        .social-link { position: absolute; top: 15px; right: 15px; color: var(--neon); font-size: 1.5rem; text-decoration: none; transition: 0.3s; text-shadow: 0 0 10px var(--neon); }
-        .social-link:hover { transform: scale(1.2); color: #fff; }
-        .lang-switcher { position: absolute; top: 15px; left: 15px; display: flex; gap: 6px; }
-        .lang-btn { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.7rem; transition: 0.3s; }
-        .lang-btn.active { background: var(--neon); color: #000; border-color: var(--neon); font-weight: bold; box-shadow: 0 0 10px var(--neon); }
-        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon); font-size: 2.4rem; margin: 45px 0 25px; text-shadow: 0 0 15px var(--neon); letter-spacing: 2px; }
-        .section-title { font-size: 0.8rem; color: var(--neon); margin: 15px 0 10px; display: block; font-weight: 700; text-align: right; border-right: 3px solid var(--neon); padding-right: 10px; }
-        .site-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-        .site-btn { background: #151515; color: #666; border: 1px solid #222; padding: 12px 2px; border-radius: 10px; cursor: pointer; font-size: 0.75rem; transition: 0.3s; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; }
-        .site-btn.active, .site-btn.highlight { background: rgba(0, 255, 204, 0.1); color: white; border-color: var(--neon); box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.2); font-weight: bold; }
-        .input-box { width: 100%; padding: 18px; border-radius: 15px; border: 1px solid #333; background: #000; color: #fff; font-size: 0.95rem; outline: none; transition: 0.4s; box-sizing: border-box; text-align: center; }
-        .input-box:focus { border-color: var(--neon); }
-        #errorMsg { color: #ff4d4d; font-size: 0.8rem; margin-top: 8px; height: 20px; opacity: 0; transition: 0.3s; }
-        .search-btn { background: var(--neon); color: #000; border: none; padding: 18px; width: 100%; border-radius: 15px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 5px; box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3); }
-        .ltr-mode .section-title { text-align: left; border-right: none; border-left: 3px solid var(--neon); padding-left: 10px; }
-        .ltr-mode .social-link { right: auto; left: 15px; }
-        .ltr-mode .lang-switcher { left: auto; right: 15px; }
+        
+        body { 
+            margin: 0; padding: 20px; 
+            background-color: var(--dark-bg); 
+            background-image: radial-gradient(circle at center, #111 0%, #050505 100%);
+            color: white; 
+            font-family: 'Tajawal', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; overflow-x: hidden; 
+        }
+
+        /* حاوية مرنة تتكيف مع حجم الشاشة */
+        .glow-box { 
+            position: relative; 
+            width: 100%; 
+            max-width: 500px; /* أكبر قليلاً للكمبيوتر */
+            padding: 2px; 
+            border-radius: 25px; 
+            background: linear-gradient(45deg, transparent, var(--neon), transparent); 
+            transition: max-width 0.3s ease;
+        }
+
+        /* تحسين العرض للشاشات الكبيرة جداً */
+        @media (min-width: 1024px) {
+            .glow-box { max-width: 700px; }
+            .site-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 15px !important; }
+            h1 { font-size: 3.5rem !important; }
+        }
+
+        .search-card { 
+            background: var(--card-bg); 
+            padding: 40px 30px; 
+            border-radius: 23px; 
+            text-align: center; 
+            position: relative; 
+        }
+
+        .social-link { position: absolute; top: 20px; right: 25px; color: var(--neon); font-size: 1.8rem; text-decoration: none; transition: 0.3s; text-shadow: 0 0 10px var(--neon); }
+        .social-link:hover { transform: scale(1.2) rotate(10deg); color: #fff; }
+
+        .lang-switcher { position: absolute; top: 20px; left: 25px; display: flex; gap: 8px; }
+        .lang-btn { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
+        .lang-btn.active { background: var(--neon); color: #000; border-color: var(--neon); font-weight: bold; box-shadow: 0 0 15px var(--neon); }
+
+        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon); font-size: 2.5rem; margin: 50px 0 30px; text-shadow: 0 0 20px var(--neon); letter-spacing: 3px; }
+
+        .section-title { font-size: 0.9rem; color: var(--neon); margin: 20px 0 12px; display: block; font-weight: 700; text-align: right; border-right: 4px solid var(--neon); padding-right: 12px; }
+        
+        .site-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        
+        .site-btn { 
+            background: #151515; color: #aaa; border: 1px solid #222; 
+            padding: 15px 5px; border-radius: 12px; cursor: pointer; 
+            font-size: 0.85rem; transition: 0.3s; font-weight: 600; text-decoration: none; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .site-btn:hover { border-color: var(--neon); color: white; background: rgba(0, 255, 204, 0.05); }
+        .site-btn.active, .site-btn.highlight { background: rgba(0, 255, 204, 0.15); color: white; border-color: var(--neon); box-shadow: 0 0 15px rgba(0, 255, 204, 0.2); font-weight: bold; }
+
+        .input-box { width: 100%; padding: 20px; border-radius: 18px; border: 1px solid #333; background: #000; color: #fff; font-size: 1.1rem; outline: none; transition: 0.4s; box-sizing: border-box; text-align: center; margin-top: 10px; }
+        .input-box:focus { border-color: var(--neon); box-shadow: 0 0 20px rgba(0, 255, 204, 0.1); }
+
+        #errorMsg { color: #ff4d4d; font-size: 0.9rem; margin-top: 10px; height: 20px; opacity: 0; transition: 0.3s; }
+
+        .search-btn { background: var(--neon); color: #000; border: none; padding: 20px; width: 100%; border-radius: 18px; font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3); }
+        .search-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 255, 204, 0.4); }
+
+        .ltr-mode .section-title { text-align: left; border-right: none; border-left: 4px solid var(--neon); padding-left: 12px; }
+        .ltr-mode .social-link { right: auto; left: 25px; }
+        .ltr-mode .lang-switcher { left: auto; right: 25px; }
+
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
     </style>
 </head>
@@ -41,32 +92,39 @@
                 <button id="enBtn" class="lang-btn" onclick="setLanguage('en', this)">EN</button>
                 <button id="frBtn" class="lang-btn" onclick="setLanguage('fr', this)">FR</button>
             </div>
+
             <h1>THE GAMEHUB</h1>
+
             <span class="section-title" id="txtMobile">ألعاب الهاتف (Android)</span>
             <div class="site-grid">
                 <button class="site-btn" onclick="selectSite('apkmirror', this)">APK Mirror</button>
                 <button class="site-btn" onclick="selectSite('liteapks', this)">LiteAPKs</button>
                 <button class="site-btn" onclick="selectSite('uptodown', this)">Uptodown</button>
             </div>
+
             <span class="section-title" id="txtPC">ألعاب مكركة (PC)</span>
             <div class="site-grid">
                 <button class="site-btn active" onclick="selectSite('wifi4games', this)">Wifi4Games</button>
                 <button class="site-btn" onclick="selectSite('elamigos', this)">ElAmigos</button>
                 <button class="site-btn" onclick="selectSite('fitgirl', this)">FitGirl</button>
             </div>
+
             <span class="section-title" id="txtOriginal">ألعاب أصلية (Official)</span>
             <div class="site-grid">
                 <button class="site-btn" onclick="selectSite('steam', this)">Steam</button>
                 <button class="site-btn" onclick="selectSite('epic', this)">Epic Games</button>
                 <button class="site-btn" onclick="selectSite('gog', this)">GOG</button>
             </div>
+
             <span class="section-title" id="txtMini">ألعاب مصغرة (Mini Games)</span>
             <div class="site-grid">
                 <a href="https://mehdibn07.github.io/Mouse-Hunter/" target="_blank" class="site-btn highlight" id="gameMouseHunter">صائد الفئران</a>
                 <a href="https://mehdibn07.github.io/Ludo/" target="_blank" class="site-btn highlight" id="gameLudo">LUDO</a>
             </div>
+
             <input type="text" id="gameQuery" class="input-box" placeholder="... اكتب اسم اللعبة" autocomplete="off">
             <div id="errorMsg">الرجاء كتابة اسم اللعبة!</div>
+
             <button class="search-btn" id="txtBtn" onclick="executeSearch()">بحث سريع 🚀</button>
         </div>
     </div>
@@ -74,18 +132,22 @@
     <script>
         let currentLang = 'ar';
         let selectedSite = 'wifi4games';
+
         const dictionary = {
             ar: { mobile: "ألعاب الهاتف (Android)", pc: "ألعاب مكركة (PC)", original: "ألعاب أصلية (Official)", mini: "ألعاب مصغرة (Mini Games)", mouseHunter: "صائد الفئران", ludo: "لودو", placeholder: "... اكتب اسم اللعبة", btn: "بحث سريع 🚀", error: "الرجاء كتابة اسم اللعبة!" },
             en: { mobile: "Mobile Games (Android)", pc: "Cracked PC Games", original: "Official Stores", mini: "Mini Games", mouseHunter: "Mouse Hunter", ludo: "LUDO", placeholder: "Type game name...", btn: "Quick Search 🚀", error: "Please type a game name!" },
             fr: { mobile: "Jeux Mobile (Android)", pc: "Jeux PC Crackés", original: "Stores Officiels", mini: "Mini Jeux", mouseHunter: "Chasseur de Souris", ludo: "LUDO", placeholder: "Nom du jeu...", btn: "Recherche 🚀", error: "Veuillez taper le nom du jeu!" }
         };
+
         function setLanguage(lang, btn) {
             currentLang = lang;
             const data = dictionary[lang];
             const htmlTag = document.getElementById('mainHtml');
             const bodyTag = document.getElementById('bodyTag');
+            
             htmlTag.dir = lang === 'ar' ? 'rtl' : 'ltr';
             if(lang !== 'ar') bodyTag.classList.add('ltr-mode'); else bodyTag.classList.remove('ltr-mode');
+
             document.getElementById('txtMobile').innerText = data.mobile;
             document.getElementById('txtPC').innerText = data.pc;
             document.getElementById('txtOriginal').innerText = data.original;
@@ -95,18 +157,28 @@
             document.getElementById('gameQuery').placeholder = data.placeholder;
             document.getElementById('txtBtn').innerText = data.btn;
             document.getElementById('errorMsg').innerText = data.error;
+            
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
+
         function selectSite(site, btn) {
             selectedSite = site;
             document.querySelectorAll('.site-grid:not(:last-of-type) .site-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
+
         function executeSearch() {
             const query = document.getElementById('gameQuery').value;
             const errorElement = document.getElementById('errorMsg');
-            if (!query) { errorElement.style.opacity = "1"; errorElement.style.animation = "shake 0.3s ease-in-out"; setTimeout(() => { errorElement.style.opacity = "0"; errorElement.style.animation = "none"; }, 2000); return; }
+
+            if (!query) {
+                errorElement.style.opacity = "1";
+                errorElement.style.animation = "shake 0.3s ease-in-out";
+                setTimeout(() => { errorElement.style.opacity = "0"; errorElement.style.animation = "none"; }, 2000);
+                return;
+            }
+            
             let url = "";
             switch(selectedSite) {
                 case 'liteapks': url = `https://liteapks.com/?s=${query}`; break;
