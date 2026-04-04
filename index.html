@@ -3,57 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">THE GAMEHUB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Tajawal:wght@200;400;700&display=swap" rel="stylesheet">
+    <title id="pageTitle">ORBIT | المدار الرقمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Tajawal:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon: #00ffcc; --ai-neon: #a020f0; --dark-bg: #050505; --card-bg: #0d0d0d; }
-        body { margin: 0; padding: 0; background-color: var(--dark-bg); background-image: radial-gradient(circle at center, #111 0%, #050505 100%); color: white; font-family: 'Tajawal', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
-        
-        .glow-box { position: relative; width: 90%; max-width: 420px; padding: 2px; border-radius: 25px; background: linear-gradient(45deg, transparent, var(--neon), transparent); transition: all 0.3s ease; margin: 20px 0; }
-        .search-card { background: var(--card-bg); padding: 30px 25px; border-radius: 23px; text-align: center; position: relative; }
-        
-        .social-link { position: absolute; top: 15px; right: 15px; color: var(--neon); font-size: 1.5rem; text-decoration: none; transition: 0.3s; text-shadow: 0 0 10px var(--neon); }
-        .social-link:hover { transform: scale(1.2); color: #fff; }
-        .lang-switcher { position: absolute; top: 15px; left: 15px; display: flex; gap: 6px; }
-        .lang-btn { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.7rem; transition: 0.3s; }
-        .lang-btn.active { background: var(--neon); color: #000; border-color: var(--neon); font-weight: bold; box-shadow: 0 0 10px var(--neon); }
-        
-        h1 { font-family: 'Orbitron', sans-serif; color: var(--neon); font-size: 2.4rem; margin: 45px 0 25px; text-shadow: 0 0 15px var(--neon); letter-spacing: 2px; }
-        .section-title { font-size: 0.8rem; color: var(--neon); margin: 15px 0 10px; display: block; font-weight: 700; text-align: right; border-right: 3px solid var(--neon); padding-right: 10px; }
-        .site-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-        
-        .site-btn { background: #151515; color: #666; border: 1px solid #222; padding: 12px 2px; border-radius: 10px; cursor: pointer; font-size: 0.75rem; transition: 0.3s; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; }
-        .site-btn.active, .site-btn.highlight { background: rgba(0, 255, 204, 0.1); color: white; border-color: var(--neon); box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.2); font-weight: bold; }
-        
-        /* تصميم خاص لزر الذكاء الاصطناعي */
-        .ai-btn { grid-column: span 3; border-color: var(--ai-neon) !important; color: white !important; background: rgba(160, 32, 240, 0.1) !important; box-shadow: 0 0 15px rgba(160, 32, 240, 0.3) !important; font-size: 1rem !important; }
-        .ai-btn:hover { background: var(--ai-neon) !important; color: #fff !important; }
+        :root { 
+            --orbit-blue: #00d2ff; 
+            --orbit-purple: #925cff; 
+            --space-black: #02040a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
 
-        .input-box { width: 100%; padding: 18px; border-radius: 15px; border: 1px solid #333; background: #000; color: #fff; font-size: 0.95rem; outline: none; transition: 0.4s; box-sizing: border-box; text-align: center; }
-        .input-box:focus { border-color: var(--neon); }
-        
-        #errorMsg { color: #ff4d4d; font-size: 0.8rem; margin-top: 8px; height: 20px; opacity: 0; transition: 0.3s; }
-        .search-btn { background: var(--neon); color: #000; border: none; padding: 18px; width: 100%; border-radius: 15px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 5px; box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3); }
+        body { 
+            margin: 0; padding: 0; 
+            background: var(--space-black);
+            background: radial-gradient(circle at center, #0b1121 0%, #02040a 100%);
+            color: white; 
+            font-family: 'Tajawal', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; overflow-x: hidden;
+        }
 
-        /* التذييل (Footer) بتنسيق رقيق */
-        .footer-section { margin-top: 35px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .copyright { font-weight: 200; font-size: 0.65rem; color: #555; letter-spacing: 0.5px; transition: 0.3s; opacity: 0.7; }
-        .copyright:hover { color: var(--neon); opacity: 1; }
+        .orbit-container {
+            width: 90%; max-width: 480px;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 50px 35px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            position: relative;
+            text-align: center;
+            border-bottom: 2px solid var(--orbit-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-link { position: absolute; top: 30px; right: 30px; color: var(--orbit-blue); font-size: 1.5rem; transition: 0.4s; }
+        .social-link:hover { transform: rotate(360deg) scale(1.2); color: #fff; text-shadow: 0 0 15px var(--orbit-blue); }
+
+        .lang-switcher { position: absolute; top: 30px; left: 30px; display: flex; gap: 5px; }
+        .lang-btn { 
+            background: rgba(255,255,255,0.05); color: #888; border: 1px solid var(--border); 
+            padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 0.7rem; transition: 0.3s;
+        }
+        .lang-btn.active { background: var(--orbit-blue); color: #000; font-weight: bold; border-color: var(--orbit-blue); }
+
+        h1 { 
+            font-family: 'Orbitron', sans-serif; font-size: 3rem; margin: 30px 0;
+            background: linear-gradient(to right, #fff, var(--orbit-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 8px; font-weight: 900; filter: drop-shadow(0 0 10px rgba(0,210,255,0.3));
+        }
+
+        .category-label { 
+            width: 100%;
+            font-size: 0.75rem; color: var(--orbit-blue); margin: 30px 0 15px; 
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .category-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+        .grid-system { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px; }
         
-        .ltr-mode .section-title { text-align: left; border-right: none; border-left: 3px solid var(--neon); padding-left: 10px; }
-        .ltr-mode .social-link { right: auto; left: 15px; }
-        .ltr-mode .lang-switcher { left: auto; right: 15px; }
+        .grid-btn { 
+            background: rgba(255, 255, 255, 0.02); color: #bbb; border: 1px solid var(--border);
+            padding: 18px 5px; border-radius: 16px; cursor: pointer; font-size: 0.8rem;
+            transition: 0.3s; font-weight: 400; text-decoration: none;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .grid-btn:hover, .grid-btn.active { background: rgba(0, 210, 255, 0.05); border-color: var(--orbit-blue); color: #fff; transform: translateY(-3px); }
+
+        .ai-pulse-btn { 
+            grid-column: span 3; background: linear-gradient(90deg, rgba(146,92,255,0.15), rgba(0,210,255,0.15));
+            border-color: var(--orbit-purple); color: #fff; font-weight: 700; font-size: 1rem;
+            box-shadow: 0 0 20px rgba(146,92,255,0.2);
+        }
+
+        .search-engine { 
+            width: 100%; 
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .orbit-input { 
+            width: 100%; max-width: 400px;
+            padding: 22px; border-radius: 20px; border: 1px solid var(--border);
+            background: rgba(0,0,0,0.5); color: #fff; font-size: 1rem; outline: none;
+            transition: 0.4s; text-align: center;
+        }
+        .orbit-input:focus { border-color: var(--orbit-blue); background: #000; box-shadow: 0 0 25px rgba(0,210,255,0.1); }
+
+        .orbit-search-btn { 
+            width: 100%; max-width: 400px;
+            background: linear-gradient(45deg, var(--orbit-blue), var(--orbit-purple));
+            color: white; border: none; padding: 22px; border-radius: 20px;
+            font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.4s;
+            margin-top: 15px; letter-spacing: 1px;
+        }
+        .orbit-search-btn:hover { transform: scale(1.02); filter: brightness(1.1); box-shadow: 0 10px 30px rgba(146,92,255,0.3); }
+
+        .orbit-footer { width: 100%; margin-top: 50px; padding-top: 25px; border-top: 1px solid var(--border); }
+        .orbit-copy { font-size: 0.65rem; color: #555; font-weight: 200; letter-spacing: 2px; text-transform: uppercase; }
 
         @media (min-width: 1024px) {
-            .glow-box { max-width: 850px; }
-            .search-card { padding: 50px 40px; }
-            h1 { font-size: 4rem; }
-            .section-title { font-size: 1.1rem; margin: 25px 0 15px; }
-            .site-btn { padding: 20px 5px; font-size: 1rem; border-radius: 15px; }
-            .input-box { padding: 25px; font-size: 1.2rem; }
-            .search-btn { padding: 25px; font-size: 1.5rem; }
-            .copyright { font-size: 0.85rem; }
+            .orbit-container { max-width: 900px; padding: 70px; }
+            h1 { font-size: 5rem; }
+            .grid-btn { padding: 25px; font-size: 1rem; }
         }
 
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
@@ -61,60 +122,60 @@
 </head>
 <body id="bodyTag">
 
-    <div class="glow-box">
-        <div class="search-card">
-            <a href="https://www.instagram.com/the_gamehub_official" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-            
-            <div class="lang-switcher">
-                <button id="arBtn" class="lang-btn active" onclick="setLanguage('ar', this)">العربية</button>
-                <button id="enBtn" class="lang-btn" onclick="setLanguage('en', this)">EN</button>
-                <button id="frBtn" class="lang-btn" onclick="setLanguage('fr', this)">FR</button>
-            </div>
+    <div class="orbit-container">
+        <a href="https://www.instagram.com/the_gamehub_official" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        
+        <div class="lang-switcher">
+            <button id="arBtn" class="lang-btn active" onclick="setLanguage('ar', this)">العربية</button>
+            <button id="enBtn" class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+            <button id="frBtn" class="lang-btn" onclick="setLanguage('fr', this)">FR</button>
+        </div>
 
-            <h1>THE GAMEHUB</h1>
-            
-            <span class="section-title" id="txtMobile">ألعاب الهاتف (Android)</span>
-            <div class="site-grid">
-                <button class="site-btn" onclick="selectSite('apkmirror', this)">APK Mirror</button>
-                <button class="site-btn" onclick="selectSite('liteapks', this)">LiteAPKs</button>
-                <button class="site-btn" onclick="selectSite('uptodown', this)">Uptodown</button>
-            </div>
+        <h1>ORBIT</h1>
 
-            <span class="section-title" id="txtPC">ألعاب مكركة (PC)</span>
-            <div class="site-grid">
-                <button class="site-btn active" onclick="selectSite('wifi4games', this)">Wifi4Games</button>
-                <button class="site-btn" onclick="selectSite('elamigos', this)">ElAmigos</button>
-                <button class="site-btn" onclick="selectSite('fitgirl', this)">FitGirl</button>
-            </div>
+        <span class="category-label" id="txtMobile">بوابات الهاتف (Android)</span>
+        <div class="grid-system">
+            <button class="grid-btn" onclick="selectSite('apkmirror', this)">APK Mirror</button>
+            <button class="grid-btn" onclick="selectSite('liteapks', this)">LiteAPKs</button>
+            <button class="grid-btn" onclick="selectSite('uptodown', this)">Uptodown</button>
+        </div>
 
-            <span class="section-title" id="txtOriginal">ألعاب أصلية (Official)</span>
-            <div class="site-grid">
-                <button class="site-btn" onclick="selectSite('steam', this)">Steam</button>
-                <button class="site-btn" onclick="selectSite('epic', this)">Epic Games</button>
-                <button class="site-btn" onclick="selectSite('gog', this)">GOG</button>
-            </div>
+        <span class="category-label" id="txtPC">ألعاب الحاسوب (Cracked)</span>
+        <div class="grid-system">
+            <button class="grid-btn active" onclick="selectSite('wifi4games', this)">Wifi4Games</button>
+            <button class="grid-btn" onclick="selectSite('elamigos', this)">ElAmigos</button>
+            <button class="grid-btn" onclick="selectSite('fitgirl', this)">FitGirl</button>
+        </div>
 
-            <span class="section-title" id="txtAI">الذكاء الاصطناعي MIRAGE AI</span>
-            <div class="site-grid">
-                <a href="https://mehdibn07.github.io/AI/" target="_blank" class="site-btn highlight ai-btn" id="linkAI">
-                    <i class="fas fa-robot"></i> &nbsp; MIRAGE AI
-                </a>
-            </div>
+        <span class="category-label" id="txtOriginal">المتاجر الرسمية (Official)</span>
+        <div class="grid-system">
+            <button class="grid-btn" onclick="selectSite('steam', this)">Steam</button>
+            <button class="grid-btn" onclick="selectSite('epic', this)">Epic Games</button>
+            <button class="grid-btn" onclick="selectSite('gog', this)">GOG</button>
+        </div>
 
-            <span class="section-title" id="txtMini">ألعاب مصغرة (Mini Games)</span>
-            <div class="site-grid">
-                <a href="https://mehdibn07.github.io/Mouse-Hunter/" target="_blank" class="site-btn highlight" id="gameMouseHunter">صائد الفئران</a>
-                <a href="https://mehdibn07.github.io/Ludo/" target="_blank" class="site-btn highlight" id="gameLudo">LUDO</a>
-            </div>
+        <span class="category-label" id="txtAI">الذكاء الاصطناعي MIRAGE AI</span>
+        <div class="grid-system">
+            <a href="https://mehdibn07.github.io/AI/" target="_blank" class="grid-btn ai-pulse-btn" id="linkAI">
+                <i class="fas fa-brain"></i> &nbsp; MIRAGE AI SYSTEM
+            </a>
+        </div>
 
-            <input type="text" id="gameQuery" class="input-box" placeholder="... اكتب اسم اللعبة" autocomplete="off">
-            <div id="errorMsg">الرجاء كتابة اسم اللعبة!</div>
-            <button class="search-btn" id="txtBtn" onclick="executeSearch()">بحث سريع 🚀</button>
+        <span class="category-label" id="txtMini">الألعاب المصغرة</span>
+        <div class="grid-system">
+            <a href="https://mehdibn07.github.io/Mouse-Hunter/" target="_blank" class="grid-btn">صائد الفئران</a>
+            <a href="https://mehdibn07.github.io/Ludo/" target="_blank" class="grid-btn">LUDO</a>
+        </div>
 
-            <div class="footer-section">
-                <div class="copyright" id="txtCopyright">
-                    جميع الحقوق محفوظة لدى THE_GAMEHUB © 2026
-                </div>
+        <div class="search-engine">
+            <input type="text" id="gameQuery" class="orbit-input" placeholder="... ابحث في المدار" autocomplete="off">
+            <div id="errorMsg" style="color: #ff4d4d; font-size: 0.75rem; margin-top: 10px; opacity: 0; height: 15px;">الرجاء كتابة اسم اللعبة!</div>
+            <button class="orbit-search-btn" id="txtBtn" onclick="executeSearch()">فحص المدار 📡</button>
+        </div>
+
+        <div class="orbit-footer">
+            <div class="orbit-copy" id="txtCopyright">
+                جميع الحقوق محفوظة لدى ORBIT © 2026
             </div>
         </div>
     </div>
@@ -123,34 +184,25 @@
         let currentLang = 'ar';
         let selectedSite = 'wifi4games';
         const dictionary = {
-            ar: { mobile: "ألعاب الهاتف (Android)", pc: "ألعاب مكركة (PC)", original: "ألعاب أصلية (Official)", ai: "الذكاء الاصطناعي MIRAGE AI", mini: "ألعاب مصغرة (Mini Games)", mouseHunter: "صائد الفئران", ludo: "لودو", placeholder: "... اكتب اسم اللعبة", btn: "بحث سريع 🚀", error: "الرجاء كتابة اسم اللعبة!", copy: "جميع الحقوق محفوظة لدى THE_GAMEHUB © 2026" },
-            en: { mobile: "Mobile Games (Android)", pc: "Cracked PC Games", original: "Official Stores", ai: "MIRAGE AI", mini: "Mini Games", mouseHunter: "Mouse Hunter", ludo: "LUDO", placeholder: "Type game name...", btn: "Quick Search 🚀", error: "Please type a game name!", copy: "All Rights Reserved to THE_GAMEHUB © 2026" },
-            fr: { mobile: "Jeux Mobile (Android)", pc: "Jeux PC Crackés", original: "Stores Officiels", ai: "MIRAGE IA", mini: "Mini Jeux", mouseHunter: "Chasseur de Souris", ludo: "LUDO", placeholder: "Nom du jeu...", btn: "Recherche 🚀", error: "Veuillez taper le nom du jeu!", copy: "Tous droits réservés à THE_GAMEHUB © 2026" }
+            ar: { mobile: "بوابات الهاتف (Android)", pc: "ألعاب الحاسوب (Cracked)", original: "المتاجر الرسمية (Official)", ai: "الذكاء الاصطناعي MIRAGE AI", mini: "الألعاب المصغرة", placeholder: "... ابحث في المدار", btn: "فحص المدار 📡", error: "الرجاء كتابة اسم اللعبة!", copy: "جميع الحقوق محفوظة لدى ORBIT © 2026" },
+            en: { mobile: "Mobile Gateways (Android)", pc: "PC Games (Cracked)", original: "Official Stores", ai: "MIRAGE AI SYSTEM", mini: "Mini Games", placeholder: "Search in orbit...", btn: "Scan Orbit 📡", error: "Please enter a game name!", copy: "All Rights Reserved to ORBIT © 2026" },
+            fr: { mobile: "Passerelles Mobile", pc: "Jeux PC (Crackés)", original: "Stores Officiels", ai: "MIRAGE IA SYSTÈME", mini: "Mini Jeux", placeholder: "Chercher en orbite...", btn: "Scanner l'Orbite 📡", error: "Veuillez entrer un nom!", copy: "Tous droits réservés à ORBIT © 2026" }
         };
 
         function setLanguage(lang, btn) {
             currentLang = lang;
             const data = dictionary[lang];
             const htmlTag = document.getElementById('mainHtml');
-            const bodyTag = document.getElementById('bodyTag');
             htmlTag.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            if(lang !== 'ar') bodyTag.classList.add('ltr-mode'); else bodyTag.classList.remove('ltr-mode');
             
             document.getElementById('txtMobile').innerText = data.mobile;
             document.getElementById('txtPC').innerText = data.pc;
             document.getElementById('txtOriginal').innerText = data.original;
             document.getElementById('txtAI').innerText = data.ai;
             document.getElementById('txtMini').innerText = data.mini;
-            document.getElementById('gameMouseHunter').innerText = data.mouseHunter;
-            document.getElementById('gameLudo').innerText = data.ludo;
             document.getElementById('gameQuery').placeholder = data.placeholder;
             document.getElementById('txtBtn').innerText = data.btn;
-            document.getElementById('errorMsg').innerText = data.error;
             document.getElementById('txtCopyright').innerText = data.copy;
-
-            // تحديث نص الزر ليكون AI أو IA حسب اللغة
-            const aiText = data.ai.replace("الذكاء الاصطناعي ", "");
-            document.getElementById('linkAI').innerHTML = `<i class="fas fa-robot"></i> &nbsp; ${aiText}`;
 
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -158,7 +210,7 @@
 
         function selectSite(site, btn) {
             selectedSite = site;
-            document.querySelectorAll('.site-grid:not(:last-of-type) .site-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.grid-system:not(:last-of-type) .grid-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
 
