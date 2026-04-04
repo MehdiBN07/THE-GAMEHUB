@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">ORBIT | المدار الرقمي</title>
+    <title id="pageTitle">ORBIT</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Tajawal:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -37,9 +37,7 @@
             position: relative;
             text-align: center;
             border-bottom: 2px solid var(--orbit-blue);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .social-link { position: absolute; top: 30px; right: 30px; color: var(--orbit-blue); font-size: 1.5rem; transition: 0.4s; }
@@ -52,16 +50,16 @@
         }
         .lang-btn.active { background: var(--orbit-blue); color: #000; font-weight: bold; border-color: var(--orbit-blue); }
 
+        /* العنوان الجديد المحدث */
         h1 { 
-            font-family: 'Orbitron', sans-serif; font-size: 3rem; margin: 30px 0;
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem; margin: 30px 0;
             background: linear-gradient(to right, #fff, var(--orbit-blue));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: 8px; font-weight: 900; filter: drop-shadow(0 0 10px rgba(0,210,255,0.3));
+            letter-spacing: 10px; font-weight: 900; filter: drop-shadow(0 0 10px rgba(0,210,255,0.3));
         }
 
         .category-label { 
-            width: 100%;
-            font-size: 0.75rem; color: var(--orbit-blue); margin: 30px 0 15px; 
+            width: 100%; font-size: 0.75rem; color: var(--orbit-blue); margin: 30px 0 15px; 
             text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
             display: flex; align-items: center; gap: 15px;
         }
@@ -83,25 +81,17 @@
             box-shadow: 0 0 20px rgba(146,92,255,0.2);
         }
 
-        .search-engine { 
-            width: 100%; 
-            margin-top: 35px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .search-engine { width: 100%; margin-top: 35px; display: flex; flex-direction: column; align-items: center; }
 
         .orbit-input { 
-            width: 100%; max-width: 400px;
-            padding: 22px; border-radius: 20px; border: 1px solid var(--border);
+            width: 100%; max-width: 400px; padding: 22px; border-radius: 20px; border: 1px solid var(--border);
             background: rgba(0,0,0,0.5); color: #fff; font-size: 1rem; outline: none;
             transition: 0.4s; text-align: center;
         }
         .orbit-input:focus { border-color: var(--orbit-blue); background: #000; box-shadow: 0 0 25px rgba(0,210,255,0.1); }
 
         .orbit-search-btn { 
-            width: 100%; max-width: 400px;
-            background: linear-gradient(45deg, var(--orbit-blue), var(--orbit-purple));
+            width: 100%; max-width: 400px; background: linear-gradient(45deg, var(--orbit-blue), var(--orbit-purple));
             color: white; border: none; padding: 22px; border-radius: 20px;
             font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.4s;
             margin-top: 15px; letter-spacing: 1px;
@@ -181,6 +171,14 @@
     </div>
 
     <script>
+        // كود تنظيف الرابط من أكواد تتبع إنستغرام تلقائياً
+        window.onload = function() {
+            if (window.location.search.length > 0) {
+                var clean_uri = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, clean_uri);
+            }
+        }
+
         let currentLang = 'ar';
         let selectedSite = 'wifi4games';
         const dictionary = {
