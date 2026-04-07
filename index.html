@@ -50,7 +50,6 @@
         }
         .lang-btn.active { background: var(--orbit-blue); color: #000; font-weight: bold; border-color: var(--orbit-blue); }
 
-        /* العنوان الجديد المحدث */
         h1 { 
             font-family: 'Orbitron', sans-serif; font-size: 3.5rem; margin: 30px 0;
             background: linear-gradient(to right, #fff, var(--orbit-blue));
@@ -125,7 +124,7 @@
 
         <span class="category-label" id="txtMobile">بوابات الهاتف (Android)</span>
         <div class="grid-system">
-            <button class="grid-btn" onclick="selectSite('apkmirror', this)">APK Mirror</button>
+            <button class="grid-btn" onclick="selectSite('apkvision', this)">APKvision</button>
             <button class="grid-btn" onclick="selectSite('liteapks', this)">LiteAPKs</button>
             <button class="grid-btn" onclick="selectSite('uptodown', this)">Uptodown</button>
         </div>
@@ -171,7 +170,6 @@
     </div>
 
     <script>
-        // كود تنظيف الرابط من أكواد تتبع إنستغرام تلقائياً
         window.onload = function() {
             if (window.location.search.length > 0) {
                 var clean_uri = window.location.protocol + "//" + window.location.host + window.location.pathname;
@@ -223,8 +221,8 @@
             }
             let url = "";
             switch(selectedSite) {
+                case 'apkvision': url = `https://apkvision.org/?s=${query}`; break;
                 case 'liteapks': url = `https://liteapks.com/?s=${query}`; break;
-                case 'apkmirror': url = `https://www.apkmirror.com/?post_type=app_release&searchtype=apk&bundles%5B%5D=apkm_bundles&bundles%5B%5D=apk_files&s=${query}`; break;
                 case 'uptodown': url = `https://en.uptodown.com/android/search?query=${query}`; break;
                 case 'wifi4games': url = `https://www.wifi4games.com/search/${query}`; break;
                 case 'elamigos': url = `https://www.google.com/search?q=site:elamigos.site+${query}`; break;
